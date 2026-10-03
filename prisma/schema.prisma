@@ -46,3 +46,48 @@ enum Availibility {
   IN_STORE
   ONLINE
 }
+
+
+model Organization {
+  id  String  @default(uuid()) @id
+  name  String
+  staffCount  Int
+  address String
+  website String
+  email String  @unique()
+  services  Service[]
+  staff Staff[]
+  users User[]
+}
+
+model Staff {
+  id String @default(uuid()) @id
+  name String
+  experience String
+  Designation String
+  email String  @unique()
+  orgId String
+  organization Organization @relation(references: [id], fields: [orgId])
+}
+
+model Service {
+  id  String  @default(uuid()) @id
+  orgId String
+  organization Organization  @relation(references: [id], fields: [orgId])
+  name  String
+}
+
+model User {
+  id  String  @default(uuid()) @id
+  name  String
+  email String  @unique()
+  Role  Role
+  orgId String?
+  organization Organization?  @relation(references: [id], fields: [orgId])
+}
+
+enum Role {
+  ROOT
+  SUPERADMIN
+  ADMIN
+}

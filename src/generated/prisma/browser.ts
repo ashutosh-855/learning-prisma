@@ -37,3 +37,23 @@ export type Review = Prisma.ReviewModel
  * 
  */
 export type Tag = Prisma.TagModel
+/**
+ * Model Organization
+ * 
+ */
+export type Organization = Prisma.OrganizationModel
+/**
+ * Model Staff
+ * 
+ */
+export type Staff = Prisma.StaffModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel

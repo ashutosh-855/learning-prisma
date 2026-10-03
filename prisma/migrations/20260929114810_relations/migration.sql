@@ -7,7 +7,7 @@ CREATE TABLE "Description" (
     CONSTRAINT "Description_pkey" PRIMARY KEY ("id")
 );
 
-CreateTable
+--CreateTable
 CREATE TABLE "Review" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,

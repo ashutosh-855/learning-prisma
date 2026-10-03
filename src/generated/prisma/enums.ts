@@ -15,3 +15,12 @@ export const Availibility = {
 } as const
 
 export type Availibility = (typeof Availibility)[keyof typeof Availibility]
+
+
+export const Role = {
+  ROOT: 'ROOT',
+  SUPERADMIN: 'SUPERADMIN',
+  ADMIN: 'ADMIN'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]
