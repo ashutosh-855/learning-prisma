@@ -27,7 +27,8 @@ export class StaffService {
 
     const organization =await this.databaseService.staff.create({
         data:{
-                ...createStaffDto
+                ...createStaffDto,
+                orgId: orgId
         }
     })
 
