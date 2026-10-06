@@ -4,12 +4,12 @@ import { Role } from '../../generated/prisma/enums';
 export class CreateStaffDto {
   @IsString()
   name: string;
+  
   @IsEmail()
   email: string;
-
-  @IsEnum(Role)
-  Role: Role;
-
+  
+  @IsString()
+  experience: string;
   @IsString()
   designation: string;
 }
