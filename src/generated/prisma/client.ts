@@ -75,6 +75,11 @@ export type Staff = Prisma.StaffModel
  */
 export type Service = Prisma.ServiceModel
 /**
+ * Model Setting
+ * 
+ */
+export type Setting = Prisma.SettingModel
+/**
  * Model User
  * 
  */

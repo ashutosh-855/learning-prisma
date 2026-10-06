@@ -20,24 +20,13 @@ export type OrganizationModel = runtime.Types.Result.DefaultSelection<Prisma.$Or
 
 export type AggregateOrganization = {
   _count: OrganizationCountAggregateOutputType | null
-  _avg: OrganizationAvgAggregateOutputType | null
-  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
-}
-
-export type OrganizationAvgAggregateOutputType = {
-  staffCount: number | null
-}
-
-export type OrganizationSumAggregateOutputType = {
-  staffCount: number | null
 }
 
 export type OrganizationMinAggregateOutputType = {
   id: string | null
   name: string | null
-  staffCount: number | null
   address: string | null
   website: string | null
   email: string | null
@@ -46,7 +35,6 @@ export type OrganizationMinAggregateOutputType = {
 export type OrganizationMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  staffCount: number | null
   address: string | null
   website: string | null
   email: string | null
@@ -55,7 +43,6 @@ export type OrganizationMaxAggregateOutputType = {
 export type OrganizationCountAggregateOutputType = {
   id: number
   name: number
-  staffCount: number
   address: number
   website: number
   email: number
@@ -63,18 +50,9 @@ export type OrganizationCountAggregateOutputType = {
 }
 
 
-export type OrganizationAvgAggregateInputType = {
-  staffCount?: true
-}
-
-export type OrganizationSumAggregateInputType = {
-  staffCount?: true
-}
-
 export type OrganizationMinAggregateInputType = {
   id?: true
   name?: true
-  staffCount?: true
   address?: true
   website?: true
   email?: true
@@ -83,7 +61,6 @@ export type OrganizationMinAggregateInputType = {
 export type OrganizationMaxAggregateInputType = {
   id?: true
   name?: true
-  staffCount?: true
   address?: true
   website?: true
   email?: true
@@ -92,7 +69,6 @@ export type OrganizationMaxAggregateInputType = {
 export type OrganizationCountAggregateInputType = {
   id?: true
   name?: true
-  staffCount?: true
   address?: true
   website?: true
   email?: true
@@ -137,18 +113,6 @@ export type OrganizationAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: OrganizationAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: OrganizationSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: OrganizationMinAggregateInputType
@@ -179,8 +143,6 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: OrganizationCountAggregateInputType | true
-  _avg?: OrganizationAvgAggregateInputType
-  _sum?: OrganizationSumAggregateInputType
   _min?: OrganizationMinAggregateInputType
   _max?: OrganizationMaxAggregateInputType
 }
@@ -188,13 +150,10 @@ export type OrganizationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type OrganizationGroupByOutputType = {
   id: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   _count: OrganizationCountAggregateOutputType | null
-  _avg: OrganizationAvgAggregateOutputType | null
-  _sum: OrganizationSumAggregateOutputType | null
   _min: OrganizationMinAggregateOutputType | null
   _max: OrganizationMaxAggregateOutputType | null
 }
@@ -220,11 +179,11 @@ export type OrganizationWhereInput = {
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   id?: Prisma.StringFilter<"Organization"> | string
   name?: Prisma.StringFilter<"Organization"> | string
-  staffCount?: Prisma.IntFilter<"Organization"> | number
   address?: Prisma.StringFilter<"Organization"> | string
   website?: Prisma.StringFilter<"Organization"> | string
   email?: Prisma.StringFilter<"Organization"> | string
   services?: Prisma.ServiceListRelationFilter
+  setting?: Prisma.XOR<Prisma.SettingNullableScalarRelationFilter, Prisma.SettingWhereInput> | null
   staff?: Prisma.StaffListRelationFilter
   users?: Prisma.UserListRelationFilter
 }
@@ -232,11 +191,11 @@ export type OrganizationWhereInput = {
 export type OrganizationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  staffCount?: Prisma.SortOrder
   address?: Prisma.SortOrder
   website?: Prisma.SortOrder
   email?: Prisma.SortOrder
   services?: Prisma.ServiceOrderByRelationAggregateInput
+  setting?: Prisma.SettingOrderByWithRelationInput
   staff?: Prisma.StaffOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
 }
@@ -248,10 +207,10 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OrganizationWhereInput[]
   NOT?: Prisma.OrganizationWhereInput | Prisma.OrganizationWhereInput[]
   name?: Prisma.StringFilter<"Organization"> | string
-  staffCount?: Prisma.IntFilter<"Organization"> | number
   address?: Prisma.StringFilter<"Organization"> | string
   website?: Prisma.StringFilter<"Organization"> | string
   services?: Prisma.ServiceListRelationFilter
+  setting?: Prisma.XOR<Prisma.SettingNullableScalarRelationFilter, Prisma.SettingWhereInput> | null
   staff?: Prisma.StaffListRelationFilter
   users?: Prisma.UserListRelationFilter
 }, "id" | "email">
@@ -259,15 +218,12 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
 export type OrganizationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  staffCount?: Prisma.SortOrder
   address?: Prisma.SortOrder
   website?: Prisma.SortOrder
   email?: Prisma.SortOrder
   _count?: Prisma.OrganizationCountOrderByAggregateInput
-  _avg?: Prisma.OrganizationAvgOrderByAggregateInput
   _max?: Prisma.OrganizationMaxOrderByAggregateInput
   _min?: Prisma.OrganizationMinOrderByAggregateInput
-  _sum?: Prisma.OrganizationSumOrderByAggregateInput
 }
 
 export type OrganizationScalarWhereWithAggregatesInput = {
@@ -276,7 +232,6 @@ export type OrganizationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OrganizationScalarWhereWithAggregatesInput | Prisma.OrganizationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   name?: Prisma.StringWithAggregatesFilter<"Organization"> | string
-  staffCount?: Prisma.IntWithAggregatesFilter<"Organization"> | number
   address?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   website?: Prisma.StringWithAggregatesFilter<"Organization"> | string
   email?: Prisma.StringWithAggregatesFilter<"Organization"> | string
@@ -285,11 +240,11 @@ export type OrganizationScalarWhereWithAggregatesInput = {
 export type OrganizationCreateInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffCreateNestedManyWithoutOrganizationInput
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
 }
@@ -297,11 +252,11 @@ export type OrganizationCreateInput = {
 export type OrganizationUncheckedCreateInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingUncheckedCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffUncheckedCreateNestedManyWithoutOrganizationInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
 }
@@ -309,11 +264,11 @@ export type OrganizationUncheckedCreateInput = {
 export type OrganizationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUpdateOneWithoutOrganizationNestedInput
   staff?: Prisma.StaffUpdateManyWithoutOrganizationNestedInput
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
 }
@@ -321,11 +276,11 @@ export type OrganizationUpdateInput = {
 export type OrganizationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUncheckedUpdateOneWithoutOrganizationNestedInput
   staff?: Prisma.StaffUncheckedUpdateManyWithoutOrganizationNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
 }
@@ -333,7 +288,6 @@ export type OrganizationUncheckedUpdateInput = {
 export type OrganizationCreateManyInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
@@ -342,7 +296,6 @@ export type OrganizationCreateManyInput = {
 export type OrganizationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -351,7 +304,6 @@ export type OrganizationUpdateManyMutationInput = {
 export type OrganizationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -360,20 +312,14 @@ export type OrganizationUncheckedUpdateManyInput = {
 export type OrganizationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  staffCount?: Prisma.SortOrder
   address?: Prisma.SortOrder
   website?: Prisma.SortOrder
   email?: Prisma.SortOrder
 }
 
-export type OrganizationAvgOrderByAggregateInput = {
-  staffCount?: Prisma.SortOrder
-}
-
 export type OrganizationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  staffCount?: Prisma.SortOrder
   address?: Prisma.SortOrder
   website?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -382,14 +328,9 @@ export type OrganizationMaxOrderByAggregateInput = {
 export type OrganizationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  staffCount?: Prisma.SortOrder
   address?: Prisma.SortOrder
   website?: Prisma.SortOrder
   email?: Prisma.SortOrder
-}
-
-export type OrganizationSumOrderByAggregateInput = {
-  staffCount?: Prisma.SortOrder
 }
 
 export type OrganizationScalarRelationFilter = {
@@ -430,6 +371,20 @@ export type OrganizationUpdateOneRequiredWithoutServicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutServicesInput, Prisma.OrganizationUpdateWithoutServicesInput>, Prisma.OrganizationUncheckedUpdateWithoutServicesInput>
 }
 
+export type OrganizationCreateNestedOneWithoutSettingInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingInput, Prisma.OrganizationUncheckedCreateWithoutSettingInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSettingInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutSettingNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingInput, Prisma.OrganizationUncheckedCreateWithoutSettingInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutSettingInput
+  upsert?: Prisma.OrganizationUpsertWithoutSettingInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutSettingInput, Prisma.OrganizationUpdateWithoutSettingInput>, Prisma.OrganizationUncheckedUpdateWithoutSettingInput>
+}
+
 export type OrganizationCreateNestedOneWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.OrganizationCreateWithoutUsersInput, Prisma.OrganizationUncheckedCreateWithoutUsersInput>
   connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutUsersInput
@@ -449,22 +404,22 @@ export type OrganizationUpdateOneWithoutUsersNestedInput = {
 export type OrganizationCreateWithoutStaffInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingCreateNestedOneWithoutOrganizationInput
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutStaffInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingUncheckedCreateNestedOneWithoutOrganizationInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
@@ -487,32 +442,32 @@ export type OrganizationUpdateToOneWithWhereWithoutStaffInput = {
 export type OrganizationUpdateWithoutStaffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUpdateOneWithoutOrganizationNestedInput
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutStaffInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUncheckedUpdateOneWithoutOrganizationNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutServicesInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
+  setting?: Prisma.SettingCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffCreateNestedManyWithoutOrganizationInput
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
 }
@@ -520,10 +475,10 @@ export type OrganizationCreateWithoutServicesInput = {
 export type OrganizationUncheckedCreateWithoutServicesInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
+  setting?: Prisma.SettingUncheckedCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffUncheckedCreateNestedManyWithoutOrganizationInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
 }
@@ -547,10 +502,10 @@ export type OrganizationUpdateToOneWithWhereWithoutServicesInput = {
 export type OrganizationUpdateWithoutServicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  setting?: Prisma.SettingUpdateOneWithoutOrganizationNestedInput
   staff?: Prisma.StaffUpdateManyWithoutOrganizationNestedInput
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
 }
@@ -558,10 +513,70 @@ export type OrganizationUpdateWithoutServicesInput = {
 export type OrganizationUncheckedUpdateWithoutServicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  setting?: Prisma.SettingUncheckedUpdateOneWithoutOrganizationNestedInput
+  staff?: Prisma.StaffUncheckedUpdateManyWithoutOrganizationNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutSettingInput = {
+  id?: string
+  name: string
+  address: string
+  website: string
+  email: string
+  services?: Prisma.ServiceCreateNestedManyWithoutOrganizationInput
+  staff?: Prisma.StaffCreateNestedManyWithoutOrganizationInput
+  users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutSettingInput = {
+  id?: string
+  name: string
+  address: string
+  website: string
+  email: string
+  services?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrganizationInput
+  staff?: Prisma.StaffUncheckedCreateNestedManyWithoutOrganizationInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutSettingInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingInput, Prisma.OrganizationUncheckedCreateWithoutSettingInput>
+}
+
+export type OrganizationUpsertWithoutSettingInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutSettingInput, Prisma.OrganizationUncheckedUpdateWithoutSettingInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutSettingInput, Prisma.OrganizationUncheckedCreateWithoutSettingInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutSettingInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutSettingInput, Prisma.OrganizationUncheckedUpdateWithoutSettingInput>
+}
+
+export type OrganizationUpdateWithoutSettingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  services?: Prisma.ServiceUpdateManyWithoutOrganizationNestedInput
+  staff?: Prisma.StaffUpdateManyWithoutOrganizationNestedInput
+  users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutSettingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  services?: Prisma.ServiceUncheckedUpdateManyWithoutOrganizationNestedInput
   staff?: Prisma.StaffUncheckedUpdateManyWithoutOrganizationNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
 }
@@ -569,22 +584,22 @@ export type OrganizationUncheckedUpdateWithoutServicesInput = {
 export type OrganizationCreateWithoutUsersInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutUsersInput = {
   id?: string
   name: string
-  staffCount: number
   address: string
   website: string
   email: string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrganizationInput
+  setting?: Prisma.SettingUncheckedCreateNestedOneWithoutOrganizationInput
   staff?: Prisma.StaffUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
@@ -607,22 +622,22 @@ export type OrganizationUpdateToOneWithWhereWithoutUsersInput = {
 export type OrganizationUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUpdateOneWithoutOrganizationNestedInput
   staff?: Prisma.StaffUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  staffCount?: Prisma.IntFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutOrganizationNestedInput
+  setting?: Prisma.SettingUncheckedUpdateOneWithoutOrganizationNestedInput
   staff?: Prisma.StaffUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
@@ -678,11 +693,11 @@ export type OrganizationCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Ty
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  staffCount?: boolean
   address?: boolean
   website?: boolean
   email?: boolean
   services?: boolean | Prisma.Organization$servicesArgs<ExtArgs>
+  setting?: boolean | Prisma.Organization$settingArgs<ExtArgs>
   staff?: boolean | Prisma.Organization$staffArgs<ExtArgs>
   users?: boolean | Prisma.Organization$usersArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
@@ -691,7 +706,6 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  staffCount?: boolean
   address?: boolean
   website?: boolean
   email?: boolean
@@ -700,7 +714,6 @@ export type OrganizationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  staffCount?: boolean
   address?: boolean
   website?: boolean
   email?: boolean
@@ -709,15 +722,15 @@ export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type OrganizationSelectScalar = {
   id?: boolean
   name?: boolean
-  staffCount?: boolean
   address?: boolean
   website?: boolean
   email?: boolean
 }
 
-export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "staffCount" | "address" | "website" | "email", ExtArgs["result"]["organization"]>
+export type OrganizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "address" | "website" | "email", ExtArgs["result"]["organization"]>
 export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   services?: boolean | Prisma.Organization$servicesArgs<ExtArgs>
+  setting?: boolean | Prisma.Organization$settingArgs<ExtArgs>
   staff?: boolean | Prisma.Organization$staffArgs<ExtArgs>
   users?: boolean | Prisma.Organization$usersArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
@@ -729,13 +742,13 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Organization"
   objects: {
     services: Prisma.$ServicePayload<ExtArgs>[]
+    setting: Prisma.$SettingPayload<ExtArgs> | null
     staff: Prisma.$StaffPayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    staffCount: number
     address: string
     website: string
     email: string
@@ -1134,6 +1147,7 @@ readonly fields: OrganizationFieldRefs;
 export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   services<T extends Prisma.Organization$servicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  setting<T extends Prisma.Organization$settingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$settingArgs<ExtArgs>>): Prisma.Prisma__SettingClient<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   staff<T extends Prisma.Organization$staffArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$staffArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Organization$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1167,7 +1181,6 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
 export interface OrganizationFieldRefs {
   readonly id: Prisma.FieldRef<"Organization", 'String'>
   readonly name: Prisma.FieldRef<"Organization", 'String'>
-  readonly staffCount: Prisma.FieldRef<"Organization", 'Int'>
   readonly address: Prisma.FieldRef<"Organization", 'String'>
   readonly website: Prisma.FieldRef<"Organization", 'String'>
   readonly email: Prisma.FieldRef<"Organization", 'String'>
@@ -1585,6 +1598,25 @@ export type Organization$servicesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.ServiceScalarFieldEnum | Prisma.ServiceScalarFieldEnum[]
+}
+
+/**
+ * Organization.setting
+ */
+export type Organization$settingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Setting
+   */
+  select?: Prisma.SettingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Setting
+   */
+  omit?: Prisma.SettingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SettingInclude<ExtArgs> | null
+  where?: Prisma.SettingWhereInput
 }
 
 /**

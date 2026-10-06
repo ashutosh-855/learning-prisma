@@ -3,6 +3,7 @@ import { DatabaseService } from '../database/database.service';
 import { Prisma } from '../generated/prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { dot } from 'node:test/reporters';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -13,16 +14,16 @@ export class UserService {
         throw new BadRequestException('Invalid role.')
     }
 
-    const rootUserExists = await this.databaseService.user.findFirst({
-        where:{
-            Role: 'ROOT'
-        }
-    })
-    if(rootUserExists) {
-        throw new ConflictException('Root user already exists.')
-    }
+    // const rootUserExists = await this.databaseService.user.findFirst({
+    //     where:{
+    //         Role: 'ROOT'
+    //     }
+    // })
+    // if(rootUserExists) {
+    //     throw new ConflictException('Root user already exists.')
+    // }
 
-
+    
 
     const rootUser =await this.databaseService.user.create({
         data:{
@@ -153,7 +154,7 @@ const rootExists = await this.databaseService.user.findFirst({
     // Case 2: Create Admin in Organization
         if(dto.Role === 'ADMIN') {
             
-            const userExists = await this.databaseService.user.findUnique({
+            const userExists = await this.databaseService.user.findFirst({
         where:{
             id: userId,
             
@@ -170,10 +171,16 @@ const rootExists = await this.databaseService.user.findFirst({
         throw new UnauthorizedException('Permission denied.')
     }
 
+    //Hashing the password.
+    const { password, ...userData } = dto;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await this.databaseService.user.create({
         data:{
-            ...dto,
-            orgId
+            ...userData,
+            password: hashedPassword,
+            orgId,
         }
         
     })

@@ -5,5 +5,6 @@ curl -X POST http://localhost:3000/user/eb96453a-b46c-40e0-a1a9-286b1749fb99/012
   -d '{
     "name": "Ayush",
     "email": "ayush@admin.com",
+    "password": "1234567890",
     "Role": "ADMIN"
   }'

@@ -236,9 +236,9 @@ export type ProductWhereInput = {
   price?: Prisma.FloatFilter<"Product"> | number
   sale?: Prisma.BoolFilter<"Product"> | boolean
   available?: Prisma.EnumAvailibilityFilter<"Product"> | $Enums.Availibility
+  description?: Prisma.XOR<Prisma.DescriptionNullableScalarRelationFilter, Prisma.DescriptionWhereInput> | null
   reviews?: Prisma.ReviewListRelationFilter
   tag?: Prisma.TagListRelationFilter
-  description?: Prisma.XOR<Prisma.DescriptionNullableScalarRelationFilter, Prisma.DescriptionWhereInput> | null
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -249,9 +249,9 @@ export type ProductOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   sale?: Prisma.SortOrder
   available?: Prisma.SortOrder
+  description?: Prisma.DescriptionOrderByWithRelationInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
   tag?: Prisma.TagOrderByRelationAggregateInput
-  description?: Prisma.DescriptionOrderByWithRelationInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -265,9 +265,9 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.FloatFilter<"Product"> | number
   sale?: Prisma.BoolFilter<"Product"> | boolean
   available?: Prisma.EnumAvailibilityFilter<"Product"> | $Enums.Availibility
+  description?: Prisma.XOR<Prisma.DescriptionNullableScalarRelationFilter, Prisma.DescriptionWhereInput> | null
   reviews?: Prisma.ReviewListRelationFilter
   tag?: Prisma.TagListRelationFilter
-  description?: Prisma.XOR<Prisma.DescriptionNullableScalarRelationFilter, Prisma.DescriptionWhereInput> | null
 }, "id" | "name">
 
 export type ProductOrderByWithAggregationInput = {
@@ -305,9 +305,9 @@ export type ProductCreateInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
+  description?: Prisma.DescriptionCreateNestedOneWithoutProductInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutProductInput
   tag?: Prisma.TagCreateNestedManyWithoutProductsInput
-  description?: Prisma.DescriptionCreateNestedOneWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -318,9 +318,9 @@ export type ProductUncheckedCreateInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
+  description?: Prisma.DescriptionUncheckedCreateNestedOneWithoutProductInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProductInput
   tag?: Prisma.TagUncheckedCreateNestedManyWithoutProductsInput
-  description?: Prisma.DescriptionUncheckedCreateNestedOneWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -330,9 +330,9 @@ export type ProductUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
+  description?: Prisma.DescriptionUpdateOneWithoutProductNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutProductNestedInput
   tag?: Prisma.TagUpdateManyWithoutProductsNestedInput
-  description?: Prisma.DescriptionUpdateOneWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -343,9 +343,9 @@ export type ProductUncheckedUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
+  description?: Prisma.DescriptionUncheckedUpdateOneWithoutProductNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProductNestedInput
   tag?: Prisma.TagUncheckedUpdateManyWithoutProductsNestedInput
-  description?: Prisma.DescriptionUncheckedUpdateOneWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -599,8 +599,8 @@ export type ProductCreateWithoutReviewsInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
-  tag?: Prisma.TagCreateNestedManyWithoutProductsInput
   description?: Prisma.DescriptionCreateNestedOneWithoutProductInput
+  tag?: Prisma.TagCreateNestedManyWithoutProductsInput
 }
 
 export type ProductUncheckedCreateWithoutReviewsInput = {
@@ -611,8 +611,8 @@ export type ProductUncheckedCreateWithoutReviewsInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
-  tag?: Prisma.TagUncheckedCreateNestedManyWithoutProductsInput
   description?: Prisma.DescriptionUncheckedCreateNestedOneWithoutProductInput
+  tag?: Prisma.TagUncheckedCreateNestedManyWithoutProductsInput
 }
 
 export type ProductCreateOrConnectWithoutReviewsInput = {
@@ -638,8 +638,8 @@ export type ProductUpdateWithoutReviewsInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
-  tag?: Prisma.TagUpdateManyWithoutProductsNestedInput
   description?: Prisma.DescriptionUpdateOneWithoutProductNestedInput
+  tag?: Prisma.TagUpdateManyWithoutProductsNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutReviewsInput = {
@@ -650,8 +650,8 @@ export type ProductUncheckedUpdateWithoutReviewsInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
-  tag?: Prisma.TagUncheckedUpdateManyWithoutProductsNestedInput
   description?: Prisma.DescriptionUncheckedUpdateOneWithoutProductNestedInput
+  tag?: Prisma.TagUncheckedUpdateManyWithoutProductsNestedInput
 }
 
 export type ProductCreateWithoutTagInput = {
@@ -661,8 +661,8 @@ export type ProductCreateWithoutTagInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
-  reviews?: Prisma.ReviewCreateNestedManyWithoutProductInput
   description?: Prisma.DescriptionCreateNestedOneWithoutProductInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutTagInput = {
@@ -673,8 +673,8 @@ export type ProductUncheckedCreateWithoutTagInput = {
   price: number
   sale?: boolean
   available: $Enums.Availibility
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProductInput
   description?: Prisma.DescriptionUncheckedCreateNestedOneWithoutProductInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutTagInput = {
@@ -718,8 +718,8 @@ export type ProductUpdateWithoutTagInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
-  reviews?: Prisma.ReviewUpdateManyWithoutProductNestedInput
   description?: Prisma.DescriptionUpdateOneWithoutProductNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutTagInput = {
@@ -730,8 +730,8 @@ export type ProductUncheckedUpdateWithoutTagInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   sale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   available?: Prisma.EnumAvailibilityFieldUpdateOperationsInput | $Enums.Availibility
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProductNestedInput
   description?: Prisma.DescriptionUncheckedUpdateOneWithoutProductNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutTagInput = {
@@ -792,9 +792,9 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   price?: boolean
   sale?: boolean
   available?: boolean
+  description?: boolean | Prisma.Product$descriptionArgs<ExtArgs>
   reviews?: boolean | Prisma.Product$reviewsArgs<ExtArgs>
   tag?: boolean | Prisma.Product$tagArgs<ExtArgs>
-  description?: boolean | Prisma.Product$descriptionArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -830,9 +830,9 @@ export type ProductSelectScalar = {
 
 export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAT" | "updatedAT" | "price" | "sale" | "available", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  description?: boolean | Prisma.Product$descriptionArgs<ExtArgs>
   reviews?: boolean | Prisma.Product$reviewsArgs<ExtArgs>
   tag?: boolean | Prisma.Product$tagArgs<ExtArgs>
-  description?: boolean | Prisma.Product$descriptionArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -841,9 +841,9 @@ export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
+    description: Prisma.$DescriptionPayload<ExtArgs> | null
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
     tag: Prisma.$TagPayload<ExtArgs>[]
-    description: Prisma.$DescriptionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1247,9 +1247,9 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  description<T extends Prisma.Product$descriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$descriptionArgs<ExtArgs>>): Prisma.Prisma__DescriptionClient<runtime.Types.Result.GetResult<Prisma.$DescriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   reviews<T extends Prisma.Product$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tag<T extends Prisma.Product$tagArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$tagArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  description<T extends Prisma.Product$descriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$descriptionArgs<ExtArgs>>): Prisma.Prisma__DescriptionClient<runtime.Types.Result.GetResult<Prisma.$DescriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1679,6 +1679,25 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Product.description
+ */
+export type Product$descriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Description
+   */
+  select?: Prisma.DescriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Description
+   */
+  omit?: Prisma.DescriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DescriptionInclude<ExtArgs> | null
+  where?: Prisma.DescriptionWhereInput
+}
+
+/**
  * Product.reviews
  */
 export type Product$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1724,25 +1743,6 @@ export type Product$tagArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.TagScalarFieldEnum | Prisma.TagScalarFieldEnum[]
-}
-
-/**
- * Product.description
- */
-export type Product$descriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Description
-   */
-  select?: Prisma.DescriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Description
-   */
-  omit?: Prisma.DescriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DescriptionInclude<ExtArgs> | null
-  where?: Prisma.DescriptionWhereInput
 }
 
 /**
