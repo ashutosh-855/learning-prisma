@@ -58,6 +58,7 @@ export const ModelName = {
   Organization: 'Organization',
   Staff: 'Staff',
   Service: 'Service',
+  Setting: 'Setting',
   User: 'User'
 } as const
 
@@ -121,7 +122,6 @@ export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagSca
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  staffCount: 'staffCount',
   address: 'address',
   website: 'website',
   email: 'email'
@@ -134,9 +134,9 @@ export const StaffScalarFieldEnum = {
   id: 'id',
   name: 'name',
   experience: 'experience',
-  Designation: 'Designation',
   email: 'email',
-  orgId: 'orgId'
+  orgId: 'orgId',
+  designation: 'designation'
 } as const
 
 export type StaffScalarFieldEnum = (typeof StaffScalarFieldEnum)[keyof typeof StaffScalarFieldEnum]
@@ -149,6 +149,18 @@ export const ServiceScalarFieldEnum = {
 } as const
 
 export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const SettingScalarFieldEnum = {
+  id: 'id',
+  orgId: 'orgId',
+  timezone: 'timezone',
+  language: 'language',
+  emailNotification: 'emailNotification',
+  smsNotification: 'smsNotification'
+} as const
+
+export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

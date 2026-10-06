@@ -5,16 +5,27 @@ import { PrismaPg } from '@prisma/adapter-pg';
 
 @Injectable()
 export class DatabaseService extends PrismaClient implements OnModuleInit {
+  static resolveConnectionString(): string {
+    const configuredUrl = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+
+    if (!configuredUrl) {
+      throw new Error('Database connection string is missing.');
+    }
+
+    return configuredUrl.includes('-pooler.')
+      ? configuredUrl.replace('-pooler.', '.')
+      : configuredUrl;
+  }
 
   constructor() {
-       console.log(
-    'DATABASE_URL:',
-    process.env.DATABASE_URL ? 'DEFINED' : 'UNDEFINED',
-  );
+    const connectionString = DatabaseService.resolveConnectionString();
 
-    const adapter = new PrismaPg({
-      connectionString: process.env.DATABASE_URL,
-    });
+    console.log(
+      'DATABASE_URL:',
+      connectionString ? 'DEFINED' : 'UNDEFINED',
+    );
+
+    const adapter = new PrismaPg({ connectionString });
 
     super({ adapter });
   }

@@ -8,38 +8,87 @@ datasource db {
 }
 
 model Product {
-  id        Int          @default(autoincrement()) @id
-  name      String       @unique
-  createdAT DateTime     @default(now())
-  updatedAT DateTime     @updatedAt
-  price     Float
-  sale      Boolean      @default(false)
-  available Availibility
-  reviews   Review[]
-  tag       Tag[]
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  createdAT   DateTime     @default(now())
+  updatedAT   DateTime     @updatedAt
+  price       Float
+  sale        Boolean      @default(false)
+  available   Availibility
   description Description?
+  reviews     Review[]
+  tag         Tag[]        @relation("ProductToTag")
 }
 
 model Description {
-  id        Int          @default(autoincrement()) @id 
+  id        Int     @id @default(autoincrement())
   content   String
-  product   Product      @relation(fields: [productId], references: [id])
-  productId Int          @unique
+  productId Int     @unique
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Review {
-  id        Int          @default(autoincrement()) @id
+  id        Int     @id @default(autoincrement())
   title     String
   content   String
   rating    Int
-  product   Product      @relation(fields: [productId], references: [id])
-  productId Int          
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Tag {
-  id        Int          @default(autoincrement()) @id
-  content   String
-  products   Product[]
+  id       Int       @id @default(autoincrement())
+  content  String
+  products Product[] @relation("ProductToTag")
+}
+
+model Organization {
+  id       String    @id @default(uuid())
+  name     String
+  address  String
+  website  String
+  email    String    @unique
+  services Service[]
+  setting  Setting?
+  staff    Staff[]
+  users    User[]
+}
+
+model Staff {
+  id           String       @id @default(uuid())
+  name         String
+  experience   String
+  email        String       @unique
+  orgId        String
+  designation  String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Service {
+  id           String       @id @default(uuid())
+  orgId        String
+  name         String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Setting {
+  id                String       @id @default(uuid())
+  orgId             String       @unique
+  timezone          String       @default("Asia/Kolkata")
+  language          String       @default("en")
+  emailNotification Boolean      @default(true)
+  smsNotification   Boolean      @default(false)
+  organization      Organization @relation(fields: [orgId], references: [id])
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  Role         Role
+  orgId        String?
+  organization Organization? @relation(fields: [orgId], references: [id])
 }
 
 enum Availibility {
@@ -81,7 +130,6 @@ model User {
   id  String  @default(uuid()) @id
   name  String
   email String  @unique()
-  password String
   Role  Role
   orgId String?
   organization Organization?  @relation(references: [id], fields: [orgId])

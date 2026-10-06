@@ -28,27 +28,27 @@ export type StaffMinAggregateOutputType = {
   id: string | null
   name: string | null
   experience: string | null
-  Designation: string | null
   email: string | null
   orgId: string | null
+  designation: string | null
 }
 
 export type StaffMaxAggregateOutputType = {
   id: string | null
   name: string | null
   experience: string | null
-  Designation: string | null
   email: string | null
   orgId: string | null
+  designation: string | null
 }
 
 export type StaffCountAggregateOutputType = {
   id: number
   name: number
   experience: number
-  Designation: number
   email: number
   orgId: number
+  designation: number
   _all: number
 }
 
@@ -57,27 +57,27 @@ export type StaffMinAggregateInputType = {
   id?: true
   name?: true
   experience?: true
-  Designation?: true
   email?: true
   orgId?: true
+  designation?: true
 }
 
 export type StaffMaxAggregateInputType = {
   id?: true
   name?: true
   experience?: true
-  Designation?: true
   email?: true
   orgId?: true
+  designation?: true
 }
 
 export type StaffCountAggregateInputType = {
   id?: true
   name?: true
   experience?: true
-  Designation?: true
   email?: true
   orgId?: true
+  designation?: true
   _all?: true
 }
 
@@ -157,9 +157,9 @@ export type StaffGroupByOutputType = {
   id: string
   name: string
   experience: string
-  Designation: string
   email: string
   orgId: string
+  designation: string
   _count: StaffCountAggregateOutputType | null
   _min: StaffMinAggregateOutputType | null
   _max: StaffMaxAggregateOutputType | null
@@ -187,9 +187,9 @@ export type StaffWhereInput = {
   id?: Prisma.StringFilter<"Staff"> | string
   name?: Prisma.StringFilter<"Staff"> | string
   experience?: Prisma.StringFilter<"Staff"> | string
-  Designation?: Prisma.StringFilter<"Staff"> | string
   email?: Prisma.StringFilter<"Staff"> | string
   orgId?: Prisma.StringFilter<"Staff"> | string
+  designation?: Prisma.StringFilter<"Staff"> | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }
 
@@ -197,9 +197,9 @@ export type StaffOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   experience?: Prisma.SortOrder
-  Designation?: Prisma.SortOrder
   email?: Prisma.SortOrder
   orgId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
 }
 
@@ -211,8 +211,8 @@ export type StaffWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.StaffWhereInput | Prisma.StaffWhereInput[]
   name?: Prisma.StringFilter<"Staff"> | string
   experience?: Prisma.StringFilter<"Staff"> | string
-  Designation?: Prisma.StringFilter<"Staff"> | string
   orgId?: Prisma.StringFilter<"Staff"> | string
+  designation?: Prisma.StringFilter<"Staff"> | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
 }, "id" | "email">
 
@@ -220,9 +220,9 @@ export type StaffOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   experience?: Prisma.SortOrder
-  Designation?: Prisma.SortOrder
   email?: Prisma.SortOrder
   orgId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
   _count?: Prisma.StaffCountOrderByAggregateInput
   _max?: Prisma.StaffMaxOrderByAggregateInput
   _min?: Prisma.StaffMinOrderByAggregateInput
@@ -235,17 +235,17 @@ export type StaffScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Staff"> | string
   name?: Prisma.StringWithAggregatesFilter<"Staff"> | string
   experience?: Prisma.StringWithAggregatesFilter<"Staff"> | string
-  Designation?: Prisma.StringWithAggregatesFilter<"Staff"> | string
   email?: Prisma.StringWithAggregatesFilter<"Staff"> | string
   orgId?: Prisma.StringWithAggregatesFilter<"Staff"> | string
+  designation?: Prisma.StringWithAggregatesFilter<"Staff"> | string
 }
 
 export type StaffCreateInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
+  designation: string
   organization: Prisma.OrganizationCreateNestedOneWithoutStaffInput
 }
 
@@ -253,17 +253,17 @@ export type StaffUncheckedCreateInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
   orgId: string
+  designation: string
 }
 
 export type StaffUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutStaffNestedInput
 }
 
@@ -271,35 +271,35 @@ export type StaffUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   orgId?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StaffCreateManyInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
   orgId: string
+  designation: string
 }
 
 export type StaffUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StaffUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   orgId?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StaffListRelationFilter = {
@@ -316,27 +316,27 @@ export type StaffCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   experience?: Prisma.SortOrder
-  Designation?: Prisma.SortOrder
   email?: Prisma.SortOrder
   orgId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
 }
 
 export type StaffMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   experience?: Prisma.SortOrder
-  Designation?: Prisma.SortOrder
   email?: Prisma.SortOrder
   orgId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
 }
 
 export type StaffMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   experience?: Prisma.SortOrder
-  Designation?: Prisma.SortOrder
   email?: Prisma.SortOrder
   orgId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
 }
 
 export type StaffCreateNestedManyWithoutOrganizationInput = {
@@ -385,16 +385,16 @@ export type StaffCreateWithoutOrganizationInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
+  designation: string
 }
 
 export type StaffUncheckedCreateWithoutOrganizationInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
+  designation: string
 }
 
 export type StaffCreateOrConnectWithoutOrganizationInput = {
@@ -430,41 +430,41 @@ export type StaffScalarWhereInput = {
   id?: Prisma.StringFilter<"Staff"> | string
   name?: Prisma.StringFilter<"Staff"> | string
   experience?: Prisma.StringFilter<"Staff"> | string
-  Designation?: Prisma.StringFilter<"Staff"> | string
   email?: Prisma.StringFilter<"Staff"> | string
   orgId?: Prisma.StringFilter<"Staff"> | string
+  designation?: Prisma.StringFilter<"Staff"> | string
 }
 
 export type StaffCreateManyOrganizationInput = {
   id?: string
   name: string
   experience: string
-  Designation: string
   email: string
+  designation: string
 }
 
 export type StaffUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StaffUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StaffUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  Designation?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -473,9 +473,9 @@ export type StaffSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   name?: boolean
   experience?: boolean
-  Designation?: boolean
   email?: boolean
   orgId?: boolean
+  designation?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staff"]>
 
@@ -483,9 +483,9 @@ export type StaffSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   name?: boolean
   experience?: boolean
-  Designation?: boolean
   email?: boolean
   orgId?: boolean
+  designation?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staff"]>
 
@@ -493,9 +493,9 @@ export type StaffSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   name?: boolean
   experience?: boolean
-  Designation?: boolean
   email?: boolean
   orgId?: boolean
+  designation?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staff"]>
 
@@ -503,12 +503,12 @@ export type StaffSelectScalar = {
   id?: boolean
   name?: boolean
   experience?: boolean
-  Designation?: boolean
   email?: boolean
   orgId?: boolean
+  designation?: boolean
 }
 
-export type StaffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "experience" | "Designation" | "email" | "orgId", ExtArgs["result"]["staff"]>
+export type StaffOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "experience" | "email" | "orgId" | "designation", ExtArgs["result"]["staff"]>
 export type StaffInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
@@ -528,9 +528,9 @@ export type $StaffPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: string
     name: string
     experience: string
-    Designation: string
     email: string
     orgId: string
+    designation: string
   }, ExtArgs["result"]["staff"]>
   composites: {}
 }
@@ -958,9 +958,9 @@ export interface StaffFieldRefs {
   readonly id: Prisma.FieldRef<"Staff", 'String'>
   readonly name: Prisma.FieldRef<"Staff", 'String'>
   readonly experience: Prisma.FieldRef<"Staff", 'String'>
-  readonly Designation: Prisma.FieldRef<"Staff", 'String'>
   readonly email: Prisma.FieldRef<"Staff", 'String'>
   readonly orgId: Prisma.FieldRef<"Staff", 'String'>
+  readonly designation: Prisma.FieldRef<"Staff", 'String'>
 }
     
 

@@ -6,9 +6,10 @@ export class CreateStaffDto {
   name: string;
   @IsEmail()
   email: string;
-  @IsString()
-  experience: string;
-  @IsString()
-  Designation: string;
 
+  @IsEnum(Role)
+  Role: Role;
+
+  @IsString()
+  designation: string;
 }

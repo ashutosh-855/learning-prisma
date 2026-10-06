@@ -7,6 +7,9 @@ import { ProductsModule } from './products/products.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { OrganizationModule } from './organization/organization.module';
 import { UserModule } from './user/user.module';
+import { StaffModule } from './staff/staff.module';
+import { SettingModule } from './setting/setting.module';
+import { AuthModule } from './auth/auth.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,7 +26,10 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ProductsModule,
     ReviewsModule,
     OrganizationModule,
-    UserModule
+    UserModule,
+    StaffModule,
+    SettingModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
