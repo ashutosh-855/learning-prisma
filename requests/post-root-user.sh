@@ -3,6 +3,6 @@ curl -X POST http://localhost:3000/user/root \
   -d '{
     "name": "Ashutosh",
     "email": "ashutosh@root.com",
-    "password": "1234567890",
+    "password": "Password@123",
     "Role": "ROOT"
   }'
