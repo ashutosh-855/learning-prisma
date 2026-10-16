@@ -10,6 +10,8 @@ import { UserModule } from './user/user.module';
 import { StaffModule } from './staff/staff.module';
 import { SettingModule } from './setting/setting.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler'
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -29,9 +31,25 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     UserModule,
     StaffModule,
     SettingModule,
-    AuthModule
+    AuthModule,
+    ThrottlerModule.forRoot ({
+    throttlers: [
+      {
+        ttl: 60000,
+        limit: 100,
+      },
+    ],
+  }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+
+  providers: [AppService,
+    {
+      provide: APP_GUARD,
+        useClass: ThrottlerGuard,
+    },
+  ],
+
+  
 })
 export class AppModule {}

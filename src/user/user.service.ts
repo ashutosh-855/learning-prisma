@@ -35,15 +35,15 @@ export class UserService {
   }
 
 
-  async createSuperAdmin(createUserDto: CreateUserDto, orgId: string, userId: string){
+//   async createSuperAdmin(createUserDto: CreateUserDto, orgId: string, userId: string){
     
 
    
-    //First check the dto that is the role user provide is SUPERADIM.
+//     //First check the dto that is the role user provide is SUPERADIM.
 
-    if(createUserDto.Role !== 'ROOT') {
-        throw new BadRequestException('Invalid role.')
-  }
+//     if(createUserDto.Role !== 'ROOT') {
+//         throw new BadRequestException('Invalid role.')
+//   }
 
     //check that the orginization have the super admin.
 
@@ -95,12 +95,12 @@ export class UserService {
 //     return user;
 //   }
 
-}
+
 
 
 async create(dto: CreateUserDto, orgId: string, userId: string) {
 // Case 1: Creating SuperAdmin in Organization
-
+console.log("pass form 103 line");
         if(dto.Role === "SUPERADMIN") {
 const rootExists = await this.databaseService.user.findFirst({
         where:{
@@ -108,17 +108,18 @@ const rootExists = await this.databaseService.user.findFirst({
             Role: 'ROOT'
         }
     })
+    console.log("pass form line 111.");
 
     if(!rootExists) {
         throw new UnauthorizedException('Permission denied.')
     }
-
+    console.log("pass form the line 116");
     const orgExists = await this.databaseService.organization.findUnique({
         where:{
-            id: orgId
+            id: orgId,
         }
-    })
-
+    });
+    console.log("pass form the 122.")
     if(!orgExists) {
         throw new NotFoundException("Organization doesn't exists.")
     }

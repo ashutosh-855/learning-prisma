@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -X POST http://localhost:3000/user/eb96453a-b46c-40e0-a1a9-286b1749fb99/012e50b3-eebd-4642-9a9c-d483aae7e9cc \
+curl -X POST http://localhost:3000/user/5f8b9011-a7f4-469c-81a5-243e6dedd2df/a038c9d1-fa05-40db-bd75-4dd48718dfe6 \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Ayush",

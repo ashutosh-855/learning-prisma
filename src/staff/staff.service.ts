@@ -8,20 +8,20 @@ export class StaffService {
   constructor(private readonly databaseService: DatabaseService) {}
 
 // userID check!
-  async create(createStaffDto: CreateStaffDto, orgId: string,userId: string) {
-    if(!userId){
-        throw new BadRequestException('Invalid/Empty userId.')
-    }
-// Find the user.
-    const user = await this.databaseService.user.findUnique({
-        where:{
-            id: userId
-        }
-    })
+  async create(createStaffDto: CreateStaffDto, orgId: string ,user: any,) {
+//     if(!userId){
+//         throw new BadRequestException('Invalid/Empty userId.')
+//     }
+// // Find the user.
+//     const user = await this.databaseService.user.findUnique({
+//         where:{
+//             id: userId
+//         }
+//     })
 
-    if(!user) {
-        throw new NotFoundException('User not found.')
-    }
+//     if(!user) {
+//         throw new NotFoundException('User not found.')
+//     }
 
 // Check for the organization 
 
@@ -39,7 +39,7 @@ export class StaffService {
         throw new ForbiddenException('Permission denied.')
     } 
 // Organization scope check.
-    if (user.Role != 'ROOT' && user.orgId !==  orgId) {
+    if ((user.Role === 'SUPERADMIN' || user.Role === 'ADMIN') && user.orgId !==  orgId) {
         throw new ForbiddenException('You can only create staff in your own organization.')
     }
     
